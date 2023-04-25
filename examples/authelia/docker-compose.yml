@@ -4,7 +4,5 @@ services:
   authelia:
     image: authelia/authelia
     container_name: authelia
-    networks:
-      - proxy
     expose:
       - 9091:9091
