@@ -16,24 +16,24 @@ services:
       - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
       - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'  # yamllint disable-line rule:line-length
     expose:
-      - 9091
-    restart: unless-stopped
+      - 9091:9091
+    #restart: unless-stopped
     environment:
-      - TZ=Europe/Berlin
+      #- TZ=Europe/Berlin
 
-  redis:
-    image: redis:alpine
-    container_name: authelia-redis
-    command: redis-server --requirepass SuperSecureRedisAuthPassword # also reflect this in the authelia config file
-    volumes:
+  #redis:
+    #image: redis:alpine
+    #container_name: authelia-redis
+    #command: redis-server --requirepass SuperSecureRedisAuthPassword # also reflect this in the authelia config file
+    #volumes:
     #  - ${DOCKER_VOLUME_STORAGE:-/mnt/docker-volumes}/authelia/redis:/data
-    networks:
-      - proxy
-    expose:
-      - 6379
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Berlin
+    #networks:
+    #  - proxy
+    #expose:
+    #  - 6379
+    #restart: unless-stopped
+    #environment:
+    #  - TZ=Europe/Berlin
 
 networks:
    proxy:
